@@ -7,10 +7,10 @@ import (
 	"testing"
 )
 
-func TestClient_ProductListV2(t *testing.T) {
+func TestClient_SkuDetail(t *testing.T) {
 	type args struct {
 		ctx     context.Context
-		data    ProductListV2Request
+		data    SkuDetailRequest
 		session string
 	}
 	tests := []struct {
@@ -22,9 +22,8 @@ func TestClient_ProductListV2(t *testing.T) {
 			name: "手动用例",
 			args: args{
 				ctx: context.Background(),
-				data: ProductListV2Request{
-					"page": 1,
-					"size": 2,
+				data: SkuDetailRequest{
+					"sku_id": 1706959605230640,
 				},
 				session: secrets.Shop1.AccessToken,
 			},
@@ -33,9 +32,9 @@ func TestClient_ProductListV2(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := client.ProductListV2(tt.args.ctx, tt.args.data, tt.args.session)
+			got, err := client.SkuDetail(tt.args.ctx, tt.args.data, tt.args.session)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("ProductListV2() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("SkuDetail() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if err == nil {

@@ -1,4 +1,4 @@
 package doudianapi
 
-var _ DoudianProductListV2Request = make(map[string]interface{})
-var _ map[string]interface{} = make(DoudianProductListV2Request)
+var _ ProductListV2Request = make(map[string]interface{})
+var _ map[string]interface{} = make(ProductListV2Request)

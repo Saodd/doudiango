@@ -5,16 +5,16 @@ import (
 	"github.com/saodd/alog"
 )
 
-// DoudianProductListV2 获取商品列表新版
+// ProductListV2 获取商品列表新版
 // 获取商品列表信息，类似商家后台商品管理列表
 // https://op.jinritemai.com/docs/api-docs/14/633
-func (client *Client) DoudianProductListV2(ctx context.Context, params DoudianProductListV2Request, session string) (*DoudianProductListV2Response, error) {
+func (client *Client) ProductListV2(ctx context.Context, params ProductListV2Request, session string) (*ProductListV2Response, error) {
 	if err := params.Valid(); err != nil {
 		client.HandleError(ctx, err, alog.V{"params": params})
 		return nil, err
 	}
 	var res struct {
-		Data *DoudianProductListV2Response `json:"data"`
+		Data *ProductListV2Response `json:"data"`
 		SystemError
 	}
 	err := client.Do(ctx, params, "product.listV2", session, &res)
@@ -25,16 +25,16 @@ func (client *Client) DoudianProductListV2(ctx context.Context, params DoudianPr
 	return res.Data, nil
 }
 
-type DoudianProductListV2Request map[string]interface{}
+type ProductListV2Request map[string]interface{}
 
-func (r DoudianProductListV2Request) ToSignMap() map[string]interface{} {
+func (r ProductListV2Request) ToSignMap() map[string]interface{} {
 	return r
 }
-func (r DoudianProductListV2Request) Valid() error {
+func (r ProductListV2Request) Valid() error {
 	return nil
 }
 
-type DoudianProductListV2Response struct {
+type ProductListV2Response struct {
 	Data []struct {
 		CategoryDetail struct {
 			FirstCid    int    `json:"first_cid"`
